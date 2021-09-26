@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const DragAndDrop = ({ onHandleDrop, handleFiles }) => {
+const DragAndDrop = ({ onHandleDrop, onHandleFiles }) => {
   const [drag, setDrag] = useState(false);
   const [dragCount, setDragCount] = useState(false);
   const dragAreaRef = useRef();
@@ -42,6 +42,12 @@ const DragAndDrop = ({ onHandleDrop, handleFiles }) => {
     setDragCount(0);
   };
 
+  const handleInputClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onHandleDrop(e.target.files);
+  };
+
   useEffect(() => {
     let dragArea = dragAreaRef.current;
     dragArea.addEventListener('dragenter', handleDragIn);
@@ -66,7 +72,9 @@ const DragAndDrop = ({ onHandleDrop, handleFiles }) => {
           className="drop__box__input"
           type="file"
           multiple
-          onChange={() => handleFiles(e)}
+          onChange={(e) => {
+            handleInputClick(e);
+          }}
         />
         <p className="drop__box__label">
           Drag your files here or{' '}

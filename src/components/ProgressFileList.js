@@ -12,9 +12,10 @@ const ProgressFileList = ({
   return (
     <>
       {allFilesArr &&
-        allFilesArr.map((file) => {
+        allFilesArr.map((file, idx) => {
           return (
             <ProgressFile
+              key={idx}
               initializeProgress={initializeProgress}
               progressValue={progressValue}
               totalFileSize={totalFileSize}

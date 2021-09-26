@@ -26,7 +26,6 @@ export default function App() {
   };
 
   const handleFiles = (upfiles) => {
-    console.log('upfiles', upfiles);
     let allUpfiles = [...upfiles];
     setFilesLength(allUpfiles.length);
     initializeProgress(filesLength);
@@ -38,7 +37,6 @@ export default function App() {
     let total =
       uploadProgress.reduce((tot, curr) => tot + curr, 0) /
       uploadProgress.length;
-    console.debug('update', fileNumber, percent, total);
     setProgressValue(total);
   };
 
@@ -57,7 +55,6 @@ export default function App() {
   };
 
   const uploadFile = async (files) => {
-    console.log('files', files);
     let newArr = [];
     const fileUploaders = files.map(async (file) => {
       const formData = new FormData();
@@ -76,8 +73,6 @@ export default function App() {
           )
           .then((response) => {
             const data = response.data;
-            const fileURL = data.secure_url;
-            console.log('data', data);
             setFilesDataList(data);
             // const newItem = {
             //   itemData: data,
@@ -103,11 +98,6 @@ export default function App() {
     });
   };
 
-  console.log('showError', showError.Error);
-
-  console.log(filesDataList);
-  console.log('allFilesArr', allFilesArr);
-
   return (
     <div className="app-wrapper">
       <div className="wrapper">
@@ -115,7 +105,7 @@ export default function App() {
           <h2 className="drop__box__title">Dropper</h2>
           <DragAndDrop
             onHandleDrop={handleDrop}
-            handleFiles={() => handleFiles(e)}
+            onHandleFiles={() => handleFiles(ev)}
           />
           <div className="drop__box__list__wrapper">
             {allFilesArr.length !== 0 ? (

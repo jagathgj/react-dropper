@@ -49,9 +49,7 @@ const ProgressFile = ({
 }) => {
   const [currentProgress, setCurrentProgress] = useState(progressValue);
 
-  console.log('fileDataa', fileData);
   const { original_extension, format, byte, original_filename } = fileData;
-  console.log('progressValue', progressValue);
   return (
     <>
       {fileData && fileData ? (
