@@ -40,9 +40,6 @@ const DragAndDrop = ({ onHandleDrop, handleFiles }) => {
     onHandleDrop(e.dataTransfer.files);
     e.dataTransfer.clearData();
     setDragCount(0);
-    // if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-
-    // }
   };
 
   useEffect(() => {
